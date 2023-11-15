@@ -4,12 +4,23 @@
 #include "keymap_swedish.h"
 
 
+#define __WEAK__ __attribute__((weak))
+
 enum layer_names {
   _BASE,
   _SYM,
-  _NAV
+  _NAV,
+  _CFG
 };
 
+enum keycodes {
+  EXT_CFG = SAFE_RANGE,
+  GAME_ON,
+  CAS_TOG,
+  ALT_TAB,
+};
+
+//använd en combo.def istället.
 enum combos {
   CMB_LCTL = 0,
   CMB_RCTL,
@@ -26,7 +37,7 @@ enum combos {
 
 enum tap_dances {
   TD_QUOT_DQUO,
-  TD_AT_HASH,
+  TD_AT_TILD,
   TD_QUESTION_EXCLAIM,
   TD_AMPERSAND_CIRCUMFLEX,
   TD_REPEAT
@@ -34,7 +45,7 @@ enum tap_dances {
 
 #ifdef TAP_DANCE_ENABLE
   #define QUOT_TD TD(TD_QUOT_DQUO)
-  #define AT_TD TD(TD_AT_HASH)
+  #define AT_TD TD(TD_AT_TILD)
   #define QUES_TD TD(TD_QUESTION_EXCLAIM)
   #define REP_TD TD(TD_REPEAT)
   #define AMP_TD TD(TD_AMPERSAND_CIRCUMFLEX)
@@ -51,8 +62,11 @@ enum tap_dances {
   #define AMP_TD KC_AMPERSAND
 #endif
 
+//backwards alt_tab
+#define TLA_TAB LSFT(ALT_TAB)
 //HOLD down Ö
 #define ODIANAV LT(_NAV, SE_ODIA)
+// pinky ctrl
 #define Z_CTL LCTL_T(SE_Z)
 #define MINS_CTL RCTL_T(SE_MINS)
 
@@ -123,14 +137,14 @@ enum tap_dances {
 
 /*** my old left swedish symbol-table ***/
                          /* ╭────────┬────────┬────────┬────────┬─────────╮ */
-                         /* │  /     │  {     │  }     │  \     │   |     │ */
-#define ___5SYM_OLD_1___      SE_SLSH, SE_LCBR, SE_RCBR, SE_BSLS, SE_PIPE 
+                         /* │  *     │  {     │  }     │  %     │   |     │ */
+#define ___5SYM_OLD_1___      SE_ASTR, SE_LCBR, SE_RCBR, SE_PERC, SE_PIPE 
                          /* ├────────┼────────┼────────┼────────┼─────────┤ */
                          /* │  <     │  (     │  )     │  >     │   $     │ */
 #define ___5SYM_OLD_2___      SE_LABK, SE_LPRN, SE_RPRN, SE_RABK, SE_DLR
                          /* ├────────┼────────┼────────┼────────┼─────────┤ */
-                         /* │  *     │  [     │  ]     │  %     │   ~     │ */
-#define ___5SYM_OLD_3___      SE_ASTR, SE_LBRC, SE_RBRC, SE_PERC, SE_TILD
+                         /* │  /     │  [     │  ]     │  \     │   #     │ */
+#define ___5SYM_OLD_3___      SE_SLSH, SE_LBRC, SE_RBRC, SE_BSLS, SE_HASH
                          /* ╰────────┴────────┴────────┴────────┴─────────╯ */
 
 /*** functions keys ***/
@@ -195,6 +209,19 @@ enum tap_dances {
 #define ___3MOUSE_BTN___      KC_BTN1,  KC_BTN3,  KC_BTN2
                          /* ╰─────────┴─────────┴─────────╯ */
 
+
+/*** config things ***/
+			 /* ╭─────────┬─────────┬─────────┬─────────┬─────────╮ */
+                         /* │         │         │         │         │         │ */
+#define ___5CFG_L_1___        AS_UP   , _______ , _______ , _______ , _______                
+                         /* ├─────────┼─────────┼─────────┼─────────┼─────────┤ */
+                         /* │         │         │         │         │         │ */
+#define ___5CFG_L_2___        AS_TOGG , CM_TOGG , KO_TOGG , CAS_TOG , GAME_ON 
+                         /* ├─────────┼─────────┼─────────┼─────────┼─────────┤ */
+                         /* │         │         │         │         │         │ */
+#define ___5CFG_L_3___        AS_DOWN , _______ , _______ , _______ , _______                
+                         /* ╰─────────┴─────────┴─────────┴─────────┴─────────╯ */
+
 /*** Shortcuts ***/
 // these migth be intercepted by overrides and instead of sending ctrl+<X>
 // will instead send specific codes just for these from extended keyboards.
@@ -213,6 +240,7 @@ enum tap_dances {
 #define ___5CLIPBOARD_R___    REDO,    PASTE,   COPY,    CUT,     UNDO
                          /* ╰────────┴────────┴────────┴────────┴─────────╯ */
 
+// homerow modifiers macros
 #define HRML(k1,k2,k3,k4)  LCTL_T(k1), LALT_T(k2), LGUI_T(k3), LSFT_T(k4)
 #define HRMR(k1,k2,k3,k4)  RSFT_T(k1), RGUI_T(k2), RALT_T(k3), RCTL_T(k4)
 

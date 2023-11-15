@@ -39,6 +39,10 @@ void leader_end_user(void) {
     register_code(KC_CAPS_LOCK);
     unregister_code(KC_CAPS_LOCK);
     //did_leader_succeed = true;
+  } else if(leader_sequence_four_keys(SE_C, SE_O, SE_N, SE_F)) {
+    // switch to layer for configuration
+    layer_on(_CFG);
+    //did_leader_succeed = true;
   } else if(leader_sequence_three_keys(SE_E, SE_S, SE_C)) {
     // ESC = escape key
     register_code(KC_ESC);
