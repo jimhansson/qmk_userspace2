@@ -41,7 +41,7 @@ TAP_DANCE_ENABLE = yes
 
 REPEAT_KEY_ENABLE = yes
 
-SRC += tap_dance.c
+SRC += tap_dance.c leaders.c casemodes.c
 
 
 ifeq ($(strip $(COMBO_ENABLE)), yes)

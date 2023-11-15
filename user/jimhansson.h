@@ -15,6 +15,9 @@ enum combos {
   CMB_RCTL,
   CMB_LALT,
   CMB_RALT,
+  CMB_LGUI,
+  CMB_RGUI,
+  CMB_ESC,
   CMB_INS,
   CMB_DEL,
   CMB_LENGTH
@@ -25,6 +28,7 @@ enum tap_dances {
   TD_QUOT_DQUO,
   TD_AT_HASH,
   TD_QUESTION_EXCLAIM,
+  TD_AMPERSAND_CIRCUMFLEX,
   TD_REPEAT
 };
 
@@ -32,13 +36,19 @@ enum tap_dances {
   #define QUOT_TD TD(TD_QUOT_DQUO)
   #define AT_TD TD(TD_AT_HASH)
   #define QUES_TD TD(TD_QUESTION_EXCLAIM)
-  #define REPEAT TD(TD_REPEAT)
+  #define REP_TD TD(TD_REPEAT)
+  #define AMP_TD TD(TD_AMPERSAND_CIRCUMFLEX)
 #else
   #define QUOT_TD SE_QUOT
   #define AT_TD   SE_AT
   #define QUES_TD SE_QUES
-// skulle kunna ha ifdef runt denna så att om inte enable så är det samma som REDO
-  #define REPEAT QK_REP
+// if we dont have repeat key enabled we will use a REDO instead
+#ifdef REPEAT_KEY_ENABLE
+  #define REP_TD QK_REP
+#else
+  #define REP_TD REDO
+#endif
+  #define AMP_TD KC_AMPERSAND
 #endif
 
 //HOLD down Ö
@@ -64,7 +74,7 @@ enum tap_dances {
 #define ___6QWERTY_1_R___     SE_Y,    SE_U,    SE_I,    SE_O,     SE_P,    SE_ARNG
                          /* ├────────┼────────┼────────┼────────┼─────────┼────────┤ */
                          /* │  H     │  J     │  K     │  L     │  Ö      │  Ä     │ */
-#define ___6QWERTY_2_R___      SE_H,    SE_J,    SE_K,    SE_L,   ODIANAV,  SE_ADIA
+#define ___6QWERTY_2_R___     SE_H,    SE_J,    SE_K,    SE_L,    ODIANAV,  SE_ADIA
                          /* ├────────┼────────┼────────┼────────┼─────────┼────────┤ */
                          /* │  N     │  M     │  ,     │  .     │ -       │          */
 #define ___5QWERTY_3_R___     SE_N,    SE_M,   SE_COMM,  SE_DOT,  MINS_CTL
@@ -74,13 +84,13 @@ enum tap_dances {
 /*** NUMPAD ***/
                          /* ╭────────┬────────┬─────────╮ */
                          /* │  7     │  8     │  9      │ */
-#define ___3NUM_1___           KC_P7,   KC_P8,   KC_P9
+#define ___3NUM_1___          KC_P7,   KC_P8,   KC_P9
                          /* ├────────┼────────┼─────────┤ */
                          /* │  4     │  5     │  6      │ */
-#define ___3NUM_2___           KC_P4,   KC_P5,   KC_P6
+#define ___3NUM_2___          KC_P4,   KC_P5,   KC_P6
                          /* ├────────┼────────┼─────────┤ */
                          /* │  1     │  2     │  3      │ */
-#define ___3NUM_3___           KC_P1,   KC_P2,   KC_P3 
+#define ___3NUM_3___          KC_P1,   KC_P2,   KC_P3 
                          /* ╰────────┴────────┴─────────╯ */
 
 
@@ -96,10 +106,10 @@ enum tap_dances {
 /*** normal ***/
                          /* ╭────────┬────────┬────────┬────────┬─────────╮ */
                          /* │  1     │  2     │  3     │  4     │   5     │ */
-#define ___5NUMROW_NOR_L___    KC_1,    KC_2,    KC_3,    KC_4,    KC_5
+#define ___5NUMROW_NOR_L___   KC_1,    KC_2,    KC_3,    KC_4,    KC_5
                          /* ├────────┼────────┼────────┼────────┼─────────┤ */
                          /* │  6     │  7     │  8     │  9     │   0     │ */
-#define ___5NUMROW_NOR_R___    KC_6,    KC_7,    KC_8,    KC_9,    KC_0
+#define ___5NUMROW_NOR_R___   KC_6,    KC_7,    KC_8,    KC_9,    KC_0
                          /* ╰────────┴────────┴────────┴────────┴─────────╯ */
 /*** alt-gr ***/
                          /* ╭───────────┬───────────┬───────────┬───────────┬────────────╮ */
@@ -180,6 +190,11 @@ enum tap_dances {
 #define ___4MOUSE_MY_2___     KC_MS_D,       ___3MOUSE_MY_2___
                          /* ╰─────────┴─────────┴─────────┴─────────╯ */
 
+			 /* ╭─────────┬─────────┬─────────╮ */
+                         /* │         │  UP     │         │ */
+#define ___3MOUSE_BTN___      KC_BTN1,  KC_BTN3,  KC_BTN2
+                         /* ╰─────────┴─────────┴─────────╯ */
+
 /*** Shortcuts ***/
 // these migth be intercepted by overrides and instead of sending ctrl+<X>
 // will instead send specific codes just for these from extended keyboards.
@@ -197,6 +212,9 @@ enum tap_dances {
                          /* │  1     │  2     │  3     │  4     │   5     │ */
 #define ___5CLIPBOARD_R___    REDO,    PASTE,   COPY,    CUT,     UNDO
                          /* ╰────────┴────────┴────────┴────────┴─────────╯ */
+
+#define HRML(k1,k2,k3,k4)  LCTL_T(k1), LALT_T(k2), LGUI_T(k3), LSFT_T(k4)
+#define HRMR(k1,k2,k3,k4)  RSFT_T(k1), RGUI_T(k2), RALT_T(k3), RCTL_T(k4)
 
 #define ___3___ _______, _______, _______
 #define ___6___ ___3___, ___3___
