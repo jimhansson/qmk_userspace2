@@ -4,6 +4,8 @@ USER=jimhansson
 #KEYBOARDS = ergodox_ez/glow ergodox_ez/shine planck/rev3 crkbd/rev1
 KEYBOARDS = crkbd
 
+crkbd : ARGS = CONVERT_TO=helios
+
 
 all: $(KEYBOARDS)
 
@@ -23,7 +25,7 @@ $(KEYBOARDS):
 #	cd qmk_firmware; qmk lint -km $(USER) -kb $@ --strict
 
 # run build
-	make BUILD_DIR=$(shell pwd) -j1 -C qmk_firmware $@:$(USER) CONVERT_TO=helios
+	make BUILD_DIR=$(shell pwd) -j1 -C qmk_firmware $@:$(USER) $(ARGS)
 
 # cleanup symlinks
 	for f in $(KEYBOARDS); do rm -rf qmk_firmware/keyboards/$(PATH_$@)/keymaps/$(USER); done
