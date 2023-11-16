@@ -25,4 +25,6 @@
 #define LEADER_NO_TIMEOUT
 #define LEADER_PER_KEY_TIMING
 
+#ifndef TAPPING_TOGGLE
 #define TAPPING_TOGGLE 2
+#endif
