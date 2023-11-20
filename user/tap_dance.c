@@ -13,7 +13,7 @@ tap_dance_action_t tap_dance_actions[] = {
   [TD_REPEAT]               = ACTION_TAP_DANCE_DOUBLE(QK_REPEAT_KEY, QK_ALT_REPEAT_KEY)
 #else
   [TD_REPEAT]               = ACTION_TAP_DANCE_DOUBLE(REDO, UNDO)
-#endif
+#endif // REPEAT_KEY_ENABLE
 };
 
 #endif // TAP_DANCE_ENABLE

@@ -13,7 +13,7 @@ void leader_end_user(void) {
   } else if(leader_sequence_one_key(SE_MINS)) {
     enable_xcase_with(SE_MINS);
     //did_leader_succeed = true;
-  } else if(leader_sequence_one_key(SE_SLSH)) {
+  } else if(leader_sequence_one_key(SE_Z)) { //same place on my symtable
     enable_xcase_with(SE_SLSH);
     //did_leader_succeed = true;
   } else if(leader_sequence_one_key(SE_COMM)) {
@@ -22,7 +22,7 @@ void leader_end_user(void) {
   } else if(leader_sequence_one_key(SE_DOT)) {
     enable_xcase_with(SE_DOT);
     //did_leader_succeed = true;
-  } else if(leader_sequence_one_key(SE_Y)) {
+  } else if(leader_sequence_one_key(SE_V)) {  // same place on my symtable
     enable_xcase_with(SE_BSLS);
     //did_leader_succeed = true;
   } else if(leader_sequence_one_key(SE_D)) {

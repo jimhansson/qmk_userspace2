@@ -35,13 +35,16 @@ enum combos {
 };
 
 
+#ifdef TAP_DANCE_ENABLE
 enum tap_dances {
   TD_QUOT_DQUO,
   TD_AT_TILD,
   TD_QUESTION_EXCLAIM,
   TD_AMPERSAND_CIRCUMFLEX,
+  // de som måste få sina egna knappar om inte tap_dance finns är dessa ~,",!,^
   TD_REPEAT
 };
+#endif
 
 #ifdef TAP_DANCE_ENABLE
   #define QUOT_TD TD(TD_QUOT_DQUO)
