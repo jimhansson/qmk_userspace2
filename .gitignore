@@ -4,5 +4,7 @@
 *.map
 *.elf
 *.tmp
+*.hex
+*.uf2
 
 obj_*
