@@ -15,6 +15,7 @@
  */
 
 #include "casemodes.h"
+#include "keymap_swedish.h"
 
 /* The caps word concept started with me @iaap on splitkb.com discord.
  * However it has been implemented and extended by many splitkb.com users:
@@ -136,6 +137,9 @@ bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
             // Keycodes to ignore (don't disable caps word)
             case KC_A ... KC_Z:
             case KC_1 ... KC_0:
+	    case KC_ARNG:
+	    case KC_ADIA:
+	    case KC_ODIA:  
             case KC_MINS:
             case KC_UNDS:
             case KC_BSPC:
