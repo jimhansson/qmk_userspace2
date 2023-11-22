@@ -137,9 +137,9 @@ bool terminate_case_modes(uint16_t keycode, const keyrecord_t *record) {
             // Keycodes to ignore (don't disable caps word)
             case KC_A ... KC_Z:
             case KC_1 ... KC_0:
-	    case KC_ARNG:
-	    case KC_ADIA:
-	    case KC_ODIA:  
+	    case SE_ARNG:
+	    case SE_ADIA:
+	    case SE_ODIA:  
             case KC_MINS:
             case KC_UNDS:
             case KC_BSPC:
