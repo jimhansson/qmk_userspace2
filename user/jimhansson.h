@@ -10,7 +10,8 @@ enum layer_names {
   _BASE,
   _SYM,
   _NAV,
-  _CFG
+  _CFG,
+  _FUN
 };
 
 enum keycodes {
