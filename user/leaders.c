@@ -10,8 +10,9 @@ void leader_end_user(void) {
   if(leader_sequence_one_key(SE_U)) {
     enable_xcase_with(SE_UNDS);
     //did_leader_succeed = true;
-  } else if(leader_sequence_one_key(SE_MINS)) {
-    enable_xcase_with(SE_MINS);
+  } else if(leader_sequence_one_key(SE_F)) {
+    set_oneshot_layer(_FUN, ONESHOT_START);
+    clear_oneshot_layer_state(ONESHOT_PRESSED);
     //did_leader_succeed = true;
   } else if(leader_sequence_one_key(SE_Z)) { //same place on my symtable
     enable_xcase_with(SE_SLSH);
