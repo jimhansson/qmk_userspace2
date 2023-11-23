@@ -25,18 +25,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   
   switch(keycode) {
-    case ALT_TAB:
-      if (record->event.pressed) {
-        if (!is_alt_tab_active) {
-          is_alt_tab_active = true;
-          register_code(KC_LALT);
-        }
-        alt_tab_timer = timer_read();
-        register_code(KC_TAB);
-      } else {
-        unregister_code(KC_TAB);
+  case ALT_TAB:
+    if (record->event.pressed) {
+      if (!is_alt_tab_active) {
+	is_alt_tab_active = true;
+	register_code(KC_LALT);
       }
-      break;
+      alt_tab_timer = timer_read();
+      register_code(KC_TAB);
+    } else {
+      unregister_code(KC_TAB);
+    }
+    break;
+  case TLA_TAB:
+    if (record->event.pressed) {
+      if (!is_alt_tab_active) {
+	is_alt_tab_active = true;
+	register_code(KC_LALT);
+      }
+      alt_tab_timer = timer_read();
+      register_code(KC_LSFT);
+      register_code(KC_TAB);
+    } else {
+      unregister_code(KC_TAB);
+      unregister_code(KC_LSFT);
+    }
+    break;
   case EXT_CFG:
     if (record->event.pressed) {
       layer_off(_CFG);

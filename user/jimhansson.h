@@ -19,6 +19,7 @@ enum keycodes {
   GAME_ON,
   CAS_TOG,
   ALT_TAB,
+  TLA_TAB, // backwards alt_tab 
 };
 
 //använd en combo.def istället.
@@ -66,8 +67,6 @@ enum tap_dances {
   #define AMP_TD KC_AMPERSAND
 #endif
 
-//backwards alt_tab
-#define TLA_TAB LSFT(ALT_TAB)
 //HOLD down Ö
 #define ODIANAV LT(_NAV, SE_ODIA)
 // pinky ctrl
