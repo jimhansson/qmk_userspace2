@@ -48,14 +48,13 @@ void leader_end_user(void) {
     // x-case
     enable_xcase();
     //did_leader_succeed = true;
-
     // end of x-case things
   } else if(leader_sequence_two_keys(LEAD_AS)){ // AS
     // autoshift toggle
     autoshift_toggle();
     //did_leader_succeed = true;
   } else if(leader_sequence_four_keys(LEAD_BOOT)) { // CONF
-    // FIXME
+    reset_keyboard();
     //did_leader_succeed = true;
   } else if(leader_sequence_three_keys(LEAD_CAP)) { // CAP
     // cap = Caps lock
