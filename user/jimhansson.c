@@ -9,6 +9,7 @@ bool __WEAK__ process_record_keymap(uint16_t keycode, keyrecord_t *record) {retu
 bool is_alt_tab_active = false; // ADD this near the beginning of keymap.c
 uint16_t alt_tab_timer = 0;     // we will be using them soon.
 
+
 void matrix_scan_user(void) { // The very important timer.
   if (is_alt_tab_active) {
     if (timer_elapsed(alt_tab_timer) > 1000) {
@@ -23,7 +24,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if(!process_case_modes(keycode, record)) {
     return false; // else I get both the sep and a space.
   }
-  
   switch(keycode) {
   case ALT_TAB:
     if (record->event.pressed) {
@@ -60,10 +60,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   case GAME_ON:
     // disables things that are in the way in games
     if(record->event.pressed) {
+#if AUTO_SHIFT_ENABLE
       if(get_autoshift_state())
 	autoshift_disable();
+#endif
+#if COMBO_ENABLE
       if(is_combo_enabled())
 	combo_disable();
+#endif
 #ifdef KEY_OVERRIDE_ENABLE
       if(key_override_is_enabled())
 	key_override_off();

@@ -22,21 +22,6 @@ enum keycodes {
   TLA_TAB, // backwards alt_tab 
 };
 
-//använd en combo.def istället.
-enum combos {
-  CMB_LCTL = 0,
-  CMB_RCTL,
-  CMB_LALT,
-  CMB_RALT,
-  CMB_LGUI,
-  CMB_RGUI,
-  CMB_ESC,
-  CMB_INS,
-  CMB_DEL,
-  CMB_LENGTH
-};
-
-
 #ifdef TAP_DANCE_ENABLE
 enum tap_dances {
   TD_QUOT_DQUO,
@@ -235,10 +220,8 @@ enum tap_dances {
 #define REDO  LCTL(SE_Y)
                          /* ╭────────┬────────┬────────┬────────┬─────────╮ */
                          /* │  1     │  2     │  3     │  4     │   5     │ */
-                         /* │  1     │  2     │  3     │  4     │   5     │ */
 #define ___5CLIPBOARD_L___    UNDO,    CUT,     COPY,    PASTE,   REDO
                          /* ├────────┼────────┼────────┼────────┼─────────┤ */
-                         /* │  1     │  2     │  3     │  4     │   5     │ */
                          /* │  1     │  2     │  3     │  4     │   5     │ */
 #define ___5CLIPBOARD_R___    REDO,    PASTE,   COPY,    CUT,     UNDO
                          /* ╰────────┴────────┴────────┴────────┴─────────╯ */
