@@ -1,38 +1,45 @@
 
 
 USER=jimhansson
-#KEYBOARDS = ergodox_ez/glow ergodox_ez/shine planck/rev3 crkbd/rev1
 
 KEYBOARDS += crkbd
-
+#KEYBOARDS += planck
 KEYBOARDS += ergodox_ez
+#KEYBOARDS += ergodox_ez
 
-crkbd : ARGS = CONVERT_TO=helios
-crkbd : variant = rev1
+crkbd: ARGS = CONVERT_TO=helios
+crkbd: variant = rev1
+planck: variant = rev3
+#ergodox_ez: variant = shine
+ergodox_ez: variant = glow
 
-ergodox_ez : variant = glow
 all: $(KEYBOARDS)
 
 .PHONY: $(KEYBOARDS)
 
-$(KEYBOARDS):
+pre-setup:
+	@echo ===== $@ =====
 	git submodule update --init --recursive
-
-	for f in $(KEYBOARDS); do rm -rf qmk_firmware/keyboards/$@/keymaps/$(USER); done
 	rm -rf qmk_firmware/users/$(USER)
+	for k in $(KEYBOARDS); do rm -rf qmk_firmware/keyboards/$$k/keymaps/$(USER); done;
+
+$(KEYBOARDS): pre-setup
+	@echo ===== $@ =====
+
+	rm -rf qmk_firmware/keyboards/$@/keymaps/$(USER)
 
 # add new symlinks
 	ln -s $(shell pwd)/user qmk_firmware/users/$(USER)
 	ln -s $(shell pwd)/$@ qmk_firmware/keyboards/$@/keymaps/$(USER)
 
 # run lint check
-#	cd qmk_firmware; qmk lint -km $(USER) -kb $@ --strict
+	#cd qmk_firmware; qmk lint -km $(USER) -kb $@
 
 # run build
 	make BUILD_DIR=$(shell pwd) -j1 -C qmk_firmware $@/$(variant):$(USER) $(ARGS)
 
 # cleanup symlinks
-	for f in $(KEYBOARDS); do rm -rf qmk_firmware/keyboards/$(PATH_$@)/keymaps/$(USER); done
+	for f in $(KEYBOARDS); do rm -rf qmk_firmware/keyboards/$$f/keymaps/$(USER); done
 	rm -rf qmk_firmware/users/$(USER)
 
 clean:
@@ -40,3 +47,4 @@ clean:
 	rm -f *.elf
 	rm -f *.map
 	rm -f *.hex
+	rm -f *.uf2

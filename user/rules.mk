@@ -41,17 +41,14 @@ TAP_DANCE_ENABLE = yes
 
 REPEAT_KEY_ENABLE = yes
 
-SRC +=  tap_dance.c \
-	leaders.c \
+SRC +=  jimhansson.c \
 	casemodes.c \
-	jimhansson.c
-
+	tap_dance.c \
+	leaders.c 
 
 ifeq ($(strip $(COMBO_ENABLE)), yes)
 	INTROSPECTION_KEYMAP_C += combos.c
 endif
-
-
 
 # Disable unwanted build options on all keyboards. (Mouse keys are turned off
 # due to https://github.com/qmk/qmk_firmware/issues/8323, and the rest are
