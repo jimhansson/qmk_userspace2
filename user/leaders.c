@@ -20,6 +20,7 @@
 #define LEAD_RESET SE_R, SE_E, SE_S, SE_E, SE_T
 #define LEAD_SCRL  SE_S, SE_C, SE_R, SE_L
 
+#if LEADER_ENABLE
 void leader_end_user(void) {
   //bool did_leader_succeed = false;
 
@@ -50,9 +51,11 @@ void leader_end_user(void) {
     //did_leader_succeed = true;
     // end of x-case things
   } else if(leader_sequence_two_keys(LEAD_AS)){ // AS
+#if AUTO_SHIFT_ENABLE
     // autoshift toggle
     autoshift_toggle();
     //did_leader_succeed = true;
+#endif
   } else if(leader_sequence_four_keys(LEAD_BOOT)) { // CONF
     reset_keyboard();
     //did_leader_succeed = true;
@@ -90,3 +93,5 @@ void leader_end_user(void) {
   } 
   
 }
+
+#endif
