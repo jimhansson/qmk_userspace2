@@ -1,7 +1,39 @@
 
-#include "quantum/quantum.h"
+#include QMK_KEYBOARD_H
 
 #include "jimhansson.h"
+
+// RIGHT
+// R3
+const uint16_t PROGMEM io_combo[] = {SE_I, SE_O, COMBO_END};
+// R2
+const uint16_t PROGMEM jk_combo[] = {SE_J, SE_K, COMBO_END};
+const uint16_t PROGMEM kl_combo[] = {SE_K, SE_L, COMBO_END};
+//const uint16_t PROGMEM lö_combo[] = {SE_L, SE_Ö, COMBO_END};
+// R1
+const uint16_t PROGMEM dot_combo[] = {SE_DOT, SE_COMM, COMBO_END};
+
+// LEFT
+// R3
+const uint16_t PROGMEM we_combo[] = {SE_W, SE_E, COMBO_END};
+// R2
+//const uint16_t PROGMEM as_combo[] = {SE_A, SE_S, COMBO_END};
+const uint16_t PROGMEM sd_combo[] = {SE_S, SE_D, COMBO_END};
+const uint16_t PROGMEM df_combo[] = {SE_D, SE_F, COMBO_END};
+// R1
+const uint16_t PROGMEM xc_combo[] = {SE_X, SE_C, COMBO_END};
+
+
+combo_t key_combos[] = {
+  COMBO(io_combo, KC_INSERT),
+  COMBO(jk_combo, OSM(MOD_RCTL)),
+  COMBO(kl_combo, OSM(MOD_RALT)),
+  //COMBO(dot_combo, ),
+  COMBO(we_combo, KC_DELETE),
+  COMBO(sd_combo, OSM(MOD_LALT)),
+  COMBO(df_combo, OSM(MOD_LCTL)),
+  //COMBO(xc_combo, )
+};
 
 // mainly use combos to avoid having to leave homerow to use
 // modifiers, will use one-shot-modifiers for that
@@ -65,86 +97,7 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
 // combos are activated on the first key release. This also disables
 // the “must hold” functionalities as they just wouldn’t work at all.
 
-// RIGHT
-// R3
-const uint16_t PROGMEM io_combo[] = {SE_I, SE_O, COMBO_END};
-// R2
-const uint16_t PROGMEM jk_combo[] = {SE_J, SE_K, COMBO_END};
-const uint16_t PROGMEM kl_combo[] = {SE_K, SE_L, COMBO_END};
-//const uint16_t PROGMEM lö_combo[] = {SE_L, SE_Ö, COMBO_END};
-// R1
-const uint16_t PROGMEM dot_combo[] = {SE_DOT, SE_COMM, COMBO_END};
 
-// LEFT
-// R3
-const uint16_t PROGMEM we_combo[] = {SE_W, SE_E, COMBO_END};
-// R2
-//const uint16_t PROGMEM as_combo[] = {SE_A, SE_S, COMBO_END};
-const uint16_t PROGMEM sd_combo[] = {SE_S, SE_D, COMBO_END};
-const uint16_t PROGMEM df_combo[] = {SE_D, SE_F, COMBO_END};
-// R1
-const uint16_t PROGMEM xc_combo[] = {SE_X, SE_C, COMBO_END};
 
-combo_t key_combos[] = {
-  [CMB_LCTL] = COMBO_ACTION(df_combo),
-  [CMB_RCTL] = COMBO_ACTION(jk_combo),
-  [CMB_LALT] = COMBO_ACTION(sd_combo),
-  [CMB_RALT] = COMBO_ACTION(kl_combo),
-  //[CMB_LGUI] = COMBO_ACTION(as_combo), // to easy to press when writing
-  //[CMB_RGUI] = COMBO_ACTION(lö_combo), // cant handle ö
-  [CMB_INS]  = COMBO_ACTION(io_combo),
-  [CMB_DEL]  = COMBO_ACTION(we_combo),
-  [CMB_ESC]  = COMBO_ACTION(dot_combo)
-};
 
-void process_combo_event(uint16_t combo_index, bool pressed) {
-  switch(combo_index) {
-  case CMB_LALT:
-    if (pressed) {
-      set_oneshot_mods(MOD_LALT);
-    }
-    break;
-  case CMB_LCTL:
-    if (pressed) {
-      set_oneshot_mods(MOD_LCTL);
-    }
-    break;
-  case CMB_LGUI:
-    if (pressed) {
-      set_oneshot_mods(MOD_LGUI);
-    }
-    break;
-  case CMB_RALT:
-    if (pressed) {
-      set_oneshot_mods(MOD_RALT);
-    }
-    break;
-  case CMB_RCTL:
-    if (pressed) {
-      set_oneshot_mods(MOD_RCTL);
-    }
-    break;
-  case CMB_RGUI:
-    if (pressed) {
-      // wierd one, not oneshot_mods
-      tap_code16(KC_APP);
-    }
-    break;
-  case CMB_INS:
-    if(pressed) {
-      tap_code16(KC_INS);
-    }
-    break;
-  case CMB_DEL:
-    if(pressed) {
-      tap_code16(KC_DEL);
-    }
-    break;
-
-  case CMB_ESC:
-    if(pressed) {
-      tap_code16(KC_ESC);
-    }
-    break;
-  }
-}
+  
