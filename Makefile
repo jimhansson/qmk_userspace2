@@ -5,44 +5,63 @@ USER=jimhansson
 KEYBOARDS += crkbd
 #KEYBOARDS += planck
 KEYBOARDS += ergodox_ez
-#KEYBOARDS += ergodox_ez
 
 crkbd: ARGS = CONVERT_TO=helios
-crkbd: variant = rev1
-planck: variant = rev3
-#ergodox_ez: variant = shine
-ergodox_ez: variant = glow
+crkbd_variants = rev1
+planck_variants = rev3
+ergodox_ez_variants = shine glow
 
 all: $(KEYBOARDS)
 
 .PHONY: $(KEYBOARDS)
 
-pre-setup:
+SYMLINKS += qmk_firmware/users/$(USER) $(foreach kb,$(KEYBOARDS),qmk_firmware/keyboards/$(kb)/keymaps/$(USER))
+
+qmk_firmware/users/$(USER):
+	@echo ===== $@ =====
+	ln -s $(shell pwd)/user $@
+
+qmk_firmware/keyboards/%/keymaps/$(USER):
+	@echo ===== $@ =====
+	ln -sf $(shell pwd)/$* $@ 
+
+update-submodules:
 	@echo ===== $@ =====
 	git submodule update --init --recursive
-	rm -rf qmk_firmware/users/$(USER)
-	for k in $(KEYBOARDS); do rm -rf qmk_firmware/keyboards/$$k/keymaps/$(USER); done;
 
-$(KEYBOARDS): pre-setup
+pre-setup: update-submodules 
+setup: pre-setup $(SYMLINKS)
+
+$(KEYBOARDS): setup
 	@echo ===== $@ =====
+	cd qmk_firmware && $(ARGS) qmk compile -kb $(subst -,/,$@) -km $(USER) 
 
-	rm -rf qmk_firmware/keyboards/$@/keymaps/$(USER)
+# Generic rule for keyboards with variants
+define keyboard_with_variants
+$(1): $(foreach v,$($(1)_variants),$(1)/$(v))
+	@echo ===== $$@ =====
+$(1)/%:
+	@echo ===== $$@ =====
+	cd qmk_firmware && $(ARGS) qmk compile -kb $$@ -km $(USER) 
+endef
 
-# add new symlinks
-	ln -s $(shell pwd)/user qmk_firmware/users/$(USER)
-	ln -s $(shell pwd)/$@ qmk_firmware/keyboards/$@/keymaps/$(USER)
+# Apply the rule to each keyboard that has variants
+$(foreach kb,$(KEYBOARDS),$(eval $(call keyboard_with_variants,$(kb))))
 
-# run lint check
-	#cd qmk_firmware; qmk lint -km $(USER) -kb $@
+# Generic flash rule
+flash-%: setup
+	@echo ===== Flashing $* =====
+	cd qmk_firmware && qmk flash -kb $* -km $(USER)
+	rm -f $(SYMLINKS)
 
-# run build
-	make BUILD_DIR=$(shell pwd) -j1 -C qmk_firmware $@/$(variant):$(USER) $(ARGS)
-
-# cleanup symlinks
-	for f in $(KEYBOARDS); do rm -rf qmk_firmware/keyboards/$$f/keymaps/$(USER); done
-	rm -rf qmk_firmware/users/$(USER)
+# For backward compatibility
+flash-ergodox: flash-ergodox_ez-shine
+flash-ergodox/shine: flash-ergodox_ez/shine
+flash-ergodox/glow: flash-ergodox_ez/glow
 
 clean:
+	rm -f $(SYMLINKS)
+	make -C qmk_firmware clean
 	rm -rf obj_*
 	rm -f *.elf
 	rm -f *.map

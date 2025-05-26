@@ -8,3 +8,4 @@
 *.uf2
 
 obj_*
+.aider*
