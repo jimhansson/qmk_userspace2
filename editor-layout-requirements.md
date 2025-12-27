@@ -39,6 +39,11 @@
   - Emacs: `M-x compile` eller `C-c C-c`
   - Vim: `:make`
   - VS Code: `Ctrl+Shift+B`
+- **Git-integration**
+  - Emacs: `M-x magit` (magit-status)
+  - Vim: `:Git` (fugitive.vim) eller `:terminal git status`
+  - VS Code: `Ctrl+Shift+G` (öppna Source Control panel)
+  - *Förslag leader*: `Leader + M`
 - **Fönsterhantering**
   - **Dela horisontellt**
     - Emacs: `C-x 2` (split-window-below)
