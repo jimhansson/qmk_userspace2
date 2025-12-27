@@ -35,6 +35,10 @@
   - Emacs: `M-;` (comment-dwim)
   - Vim: `gc` (med plugin)
   - VS Code: `Ctrl+/`
+- **Build/Compile**
+  - Emacs: `M-x compile` eller `C-c C-c`
+  - Vim: `:make`
+  - VS Code: `Ctrl+Shift+B`
 - **Fönsterhantering**
   - Dela horisontellt/vertikalt
   - Växla mellan paneler
