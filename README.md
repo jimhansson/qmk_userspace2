@@ -10,7 +10,6 @@ En anpassad QMK-konfiguration optimerad för svenska tangentbord med fokus på e
 ## Viktiga funktioner
 
 ### 🎯 Ergonomiska förbättringar
-- **Minskad lillfinger-belastning**: Ctrl-funktionalitet flyttad från lillfingrar till combos
 - **Homerow modifiers via combos**: D+F (vänster ctrl), J+K (höger ctrl), S+D (alt), K+L (alt)
 - **Space Cadet Shift**: SC_LSPO/SC_RSPC för shift + parenteser (perfekt för Lisp/paredit)
 
@@ -225,22 +224,6 @@ make crkbd:jimhansson:flash
     └── rules.mk          # Användarspecifika build-regler
 ```
 
-## Senaste förbättringar
-
-### Ergonomiska optimeringar (2025-12-27)
-- ✅ **Minskad lillfinger-belastning**: Tog bort layer-funktionalitet från Ö-tangent
-- ✅ **Förenklad layout**: Ersatte ODIANAV med SE_ODIA i ___6QWERTY_2_R___ makro
-- ✅ **Combos för modifiers**: Tog bort ctrl från Z och minus-tangenter
-- ✅ **Homerow efficiency**: Använd D+F och J+K combos för ctrl istället
-- ✅ **Lisp-kompatibilitet**: Behöll SC_LSPO/SC_RSPC för paredit-mode
-- ✅ **Bakåtkompatibilitet**: Gamla definitioner kommenterade som referens
-
-### Bakåtkompatibilitet
-```c
-// Gamla definitioner finns bevarade för referens:
-// #define Z_CTL LCTL_T(SE_Z)
-// #define MINS_CTL RCTL_T(SE_MINS)
-```
 
 ## Anpassning
 
@@ -258,12 +241,6 @@ Utöka `user/leaders.c` med nya sekvenser:
 if(leader_sequence_two_keys(SE_KEY1, SE_KEY2)) {
     // Din funktion här
 }
-```
-
-### Modifiera layout
-Ändra makron i `user/jimhansson.h` för att anpassa tangentplacering:
-```c
-#define ___5MY_CUSTOM___ SE_KEY1, SE_KEY2, SE_KEY3, SE_KEY4, SE_KEY5
 ```
 
 ### Justera case modes
@@ -286,10 +263,4 @@ make crkbd:jimhansson CONSOLE_ENABLE=yes
 # Använd QMK Toolbox för att se debug-meddelanden
 ```
 
-## Licens
 
-GPL v2 - Se QMK-projektets licensvillkor.
-
----
-
-*Konfiguration optimerad för svenska programmerare med fokus på ergonomi, effektivitet och Lisp-utveckling.*

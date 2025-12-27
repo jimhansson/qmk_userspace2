@@ -19,7 +19,7 @@ enum keycodes {
   GAME_ON,
   CAS_TOG,
   ALT_TAB,
-  TLA_TAB, // backwards alt_tab 
+  TLA_TAB, // backwards alt_tab
 };
 
 #ifdef TAP_DANCE_ENABLE
@@ -61,7 +61,6 @@ enum tap_dances {
 // #define Z_CTL LCTL_T(SE_Z)
 // #define MINS_CTL RCTL_T(SE_MINS)
 
-
 /*** base ***/
                          /* ╭────────┬────────┬────────┬────────┬────────╮ */
                          /* │  Q     │  W     │  E     │  R     │  T     │ */
@@ -85,7 +84,6 @@ enum tap_dances {
 #define ___5QWERTY_3_R___     SE_N,    SE_M,   SE_COMM,  SE_DOT,  MINS_CTL
                          /* ╰────────┴────────┴────────┴────────┴─────────╯          */
 
-
 /*** NUMPAD ***/
                          /* ╭────────┬────────┬─────────╮ */
                          /* │  7     │  8     │  9      │ */
@@ -95,9 +93,8 @@ enum tap_dances {
 #define ___3NUM_2___          KC_P4,   KC_P5,   KC_P6
                          /* ├────────┼────────┼─────────┤ */
                          /* │  1     │  2     │  3      │ */
-#define ___3NUM_3___          KC_P1,   KC_P2,   KC_P3 
+#define ___3NUM_3___          KC_P1,   KC_P2,   KC_P3
                          /* ╰────────┴────────┴─────────╯ */
-
 
 /*** number-row ***/
 /*** sfited ***/
@@ -125,11 +122,10 @@ enum tap_dances {
 #define ___5NUMROW_ALT_R___   ALGR(KC_6), ALGR(KC_7), ALGR(KC_8), ALGR(KC_9), ALGR(KC_0)
                          /* ╰───────────┴───────────┴───────────┴───────────┴────────────╯ */
 
-
 /*** my old left swedish symbol-table ***/
                          /* ╭────────┬────────┬────────┬────────┬─────────╮ */
                          /* │  *     │  {     │  }     │  %     │   |     │ */
-#define ___5SYM_OLD_1___      SE_ASTR, SE_LCBR, SE_RCBR, SE_PERC, SE_PIPE 
+#define ___5SYM_OLD_1___      SE_ASTR, SE_LCBR, SE_RCBR, SE_PERC, SE_PIPE
                          /* ├────────┼────────┼────────┼────────┼─────────┤ */
                          /* │  <     │  (     │  )     │  >     │   $     │ */
 #define ___5SYM_OLD_2___      SE_LABK, SE_LPRN, SE_RPRN, SE_RABK, SE_DLR
@@ -153,7 +149,6 @@ enum tap_dances {
 #define ___6FUNCTI_2_R___     KC_F19,  KC_F20,  KC_F21,  KC_F22,  KC_F23,   KC_F24
                          /* ╰────────┴────────┴────────┴────────┴─────────┴────────╯ */
 
-
 /*** VIM style nav ***/
                          /* ╭────────┬────────┬────────┬────────╮ */
                          /* │  Left  │  Down  │  Up    │  Right │ */
@@ -169,7 +164,7 @@ enum tap_dances {
                          /* │ Wheel L│ Wheel D│ Wheel U│ Wheel R│ */
 #define ___4MOUSE_VIM_3_R___  KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R
                          /* ╰────────┴────────┴────────┴────────╯ */
-			 
+
 /*** nav ***/
                          /* ╭────────┬────────┬────────┬────────╮ */
                          /* │  PgUp  │  Home  │  Up    │  End   │ */
@@ -179,7 +174,7 @@ enum tap_dances {
 #define ___4NAV_MY_2___      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT
                          /* ╰────────┴────────┴────────┴────────╯ */
 
-			 /* ╭─────────┬─────────┬─────────╮ */
+                         /* ╭─────────┬─────────┬─────────╮ */
                          /* │         │  UP     │         │ */
 #define ___3MOUSE_MY_1___     KC_WH_L,  KC_MS_U,  KC_WH_R
                          /* ├─────────┼─────────┼─────────┤ */
@@ -187,7 +182,7 @@ enum tap_dances {
 #define ___3MOUSE_MY_2___     KC_MS_L,  KC_MS_D,  KC_MS_R
                          /* ╰─────────┴─────────┴─────────╯ */
 
-			 /* ╭─────────┬─────────┬─────────┬─────────╮ */
+                         /* ╭─────────┬─────────┬─────────┬─────────╮ */
                          /* │         │         │  UP     │         │ */
 #define ___4MOUSE_MY_1___     KC_WH_U,       ___3MOUSE_MY_1___
                          /* ├─────────┼─────────┼─────────┼─────────┤ */
@@ -195,22 +190,21 @@ enum tap_dances {
 #define ___4MOUSE_MY_2___     KC_WH_D,       ___3MOUSE_MY_2___
                          /* ╰─────────┴─────────┴─────────┴─────────╯ */
 
-			 /* ╭─────────┬─────────┬─────────╮ */
+                         /* ╭─────────┬─────────┬─────────╮ */
                          /* │         │  UP     │         │ */
 #define ___3MOUSE_BTN___      KC_BTN1,  KC_BTN3,  KC_BTN2
                          /* ╰─────────┴─────────┴─────────╯ */
 
-
 /*** config things ***/
-			 /* ╭─────────┬─────────┬─────────┬─────────┬─────────╮ */
+                         /* ╭─────────┬─────────┬─────────┬─────────┬─────────╮ */
                          /* │         │         │         │         │         │ */
-#define ___5CFG_L_1___        AS_UP   , _______ , _______ , _______ , _______                
+#define ___5CFG_L_1___        AS_UP   , _______ , _______ , _______ , _______
                          /* ├─────────┼─────────┼─────────┼─────────┼─────────┤ */
                          /* │         │         │         │         │         │ */
-#define ___5CFG_L_2___        AS_TOGG , CM_TOGG , KO_TOGG , CAS_TOG , GAME_ON 
+#define ___5CFG_L_2___        AS_TOGG , CM_TOGG , KO_TOGG , CAS_TOG , GAME_ON
                          /* ├─────────┼─────────┼─────────┼─────────┼─────────┤ */
                          /* │         │         │         │         │         │ */
-#define ___5CFG_L_3___        AS_DOWN , _______ , _______ , _______ , _______                
+#define ___5CFG_L_3___        AS_DOWN , _______ , _______ , _______ , _______
                          /* ╰─────────┴─────────┴─────────┴─────────┴─────────╯ */
 
 /*** Shortcuts ***/
