@@ -40,9 +40,31 @@
   - Vim: `:make`
   - VS Code: `Ctrl+Shift+B`
 - **Fönsterhantering**
-  - Dela horisontellt/vertikalt
-  - Växla mellan paneler
-  - Stäng fönster/buffer
+  - **Dela horisontellt**
+    - Emacs: `C-x 2` (split-window-below)
+    - Vim: `:split` eller `C-w s`
+    - VS Code: `Ctrl+\` (split editor)
+    - *Förslag leader*: `Leader + H`
+  - **Dela vertikalt**
+    - Emacs: `C-x 3` (split-window-right)
+    - Vim: `:vsplit` eller `C-w v`
+    - VS Code: `Ctrl+Shift+\` (split editor orthogonal)
+    - *Förslag leader*: `Leader + V`
+  - **Växla mellan paneler**
+    - Emacs: `C-x o` (other-window)
+    - Vim: `C-w w` eller `C-w h/j/k/l`
+    - VS Code: `Ctrl+1/2/3` eller `Ctrl+K Ctrl+←/→`
+    - *Förslag leader*: `Leader + O`
+  - **Stäng fönster/buffer**
+    - Emacs: `C-x 0` (delete-window) eller `C-x k` (kill-buffer)
+    - Vim: `:q` eller `C-w c`
+    - VS Code: `Ctrl+W` (close editor)
+    - *Förslag leader*: `Leader + Q`
+  - **Maximera panel**
+    - Emacs: `C-x 1` (delete-other-windows)
+    - Vim: `C-w o` eller `:only`
+    - VS Code: `Ctrl+K Z` (zen mode) eller `Ctrl+Shift+Enter` (maximize)
+    - *Förslag leader*: `Leader + M`
 
 ### Medel prioritet
 - **Sök i projekt**
