@@ -55,8 +55,11 @@ enum tap_dances {
 //HOLD down Ö
 #define ODIANAV LT(_NAV, SE_ODIA)
 // pinky ctrl
-#define Z_CTL LCTL_T(SE_Z)
-#define MINS_CTL RCTL_T(SE_MINS)
+#define Z_CTL SE_Z
+#define MINS_CTL SE_MINS
+// Old definitions (for reference):
+// #define Z_CTL LCTL_T(SE_Z)
+// #define MINS_CTL RCTL_T(SE_MINS)
 
 
 /*** base ***/
@@ -76,7 +79,7 @@ enum tap_dances {
 #define ___6QWERTY_1_R___     SE_Y,    SE_U,    SE_I,    SE_O,     SE_P,    SE_ARNG
                          /* ├────────┼────────┼────────┼────────┼─────────┼────────┤ */
                          /* │  H     │  J     │  K     │  L     │  Ö      │  Ä     │ */
-#define ___6QWERTY_2_R___     SE_H,    SE_J,    SE_K,    SE_L,    ODIANAV,  SE_ADIA
+#define ___6QWERTY_2_R___     SE_H,    SE_J,    SE_K,    SE_L,    SE_ODIA,  SE_ADIA
                          /* ├────────┼────────┼────────┼────────┼─────────┼────────┤ */
                          /* │  N     │  M     │  ,     │  .     │ -       │          */
 #define ___5QWERTY_3_R___     SE_N,    SE_M,   SE_COMM,  SE_DOT,  MINS_CTL
@@ -189,7 +192,7 @@ enum tap_dances {
 #define ___4MOUSE_MY_1___     KC_WH_U,       ___3MOUSE_MY_1___
                          /* ├─────────┼─────────┼─────────┼─────────┤ */
                          /* │         │  LEFT   │  DOWN   │  RIGHT  │ */
-#define ___4MOUSE_MY_2___     KC_MS_D,       ___3MOUSE_MY_2___
+#define ___4MOUSE_MY_2___     KC_WH_D,       ___3MOUSE_MY_2___
                          /* ╰─────────┴─────────┴─────────┴─────────╯ */
 
 			 /* ╭─────────┬─────────┬─────────╮ */
@@ -234,6 +237,6 @@ enum tap_dances {
 #define ___6___ ___3___, ___3___
 
 // layout macros
-#define LAYOUT_jimhansson_planck_grid(...) LAYOUT_planck_grid(__VA_ARGS__)
+#define LAYOUT_jimhansson_planck_grid(...)    LAYOUT_planck_grid(__VA_ARGS__)
 #define LAYOUT_jimhansson_ergodox_pretty(...) LAYOUT_ergodox_pretty(__VA_ARGS__)
-#define LAYOUT_jimhansson_split_3x6_3(...)  LAYOUT_split_3x6_3(__VA_ARGS__)
+#define LAYOUT_jimhansson_split_3x6_3(...)    LAYOUT_split_3x6_3(__VA_ARGS__)
