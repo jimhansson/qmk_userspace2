@@ -1,14 +1,12 @@
-
-
 USER=jimhansson
 
 KEYBOARDS += crkbd
-#KEYBOARDS += planck
+KEYBOARDS += planck
 KEYBOARDS += ergodox_ez
 
 crkbd: ARGS = CONVERT_TO=helios
 crkbd_variants = rev1
-planck_variants = rev3
+planck_variants = rev6
 ergodox_ez_variants = shine glow
 
 all: $(KEYBOARDS)
