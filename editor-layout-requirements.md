@@ -151,6 +151,67 @@
 - [ ] Verifiera att muskelminne fungerar
 - [ ] Kontrollera att inga befintliga funktioner påverkas
 
+## 7. Implementationsalternativ
+
+### Alternativ 1: Editor State Variable
+```c
+// I jimhansson.h
+enum editor_modes {
+    EDITOR_EMACS = 0,
+    EDITOR_VIM,
+    EDITOR_VSCODE
+};
+
+// Global state variable
+static uint8_t current_editor_mode = EDITOR_EMACS;
+```
+
+### Alternativ 2: Dedikerat Editor-lager
+Skapa ett nytt lager `_EDITOR` med editor-agnostiska kommandon:
+
+```c
+enum layer_names {
+  _BASE,
+  _SYM,
+  _NAV,
+  _CFG,
+  _FUN,
+  _EDITOR  // Nytt lager
+};
+```
+
+### Alternativ 3: Leader-sekvenser för editor-växling
+```c
+// I leaders.c
+if(leader_sequence_two_keys(SE_E, SE_M)) {
+    current_editor_mode = EDITOR_EMACS;
+} else if(leader_sequence_two_keys(SE_V, SE_I)) {
+    current_editor_mode = EDITOR_VIM;
+} else if(leader_sequence_two_keys(SE_V, SE_S)) {
+    current_editor_mode = EDITOR_VSCODE;
+}
+```
+
+### Alternativ 4: Kombination av state + makron
+```c
+// Makro som skickar olika kommandon beroende på editor mode
+case EDITOR_GOTO_DEF:
+    if (current_editor_mode == EDITOR_EMACS) {
+        SEND_STRING(SS_LALT("."));  // M-.
+    } else if (current_editor_mode == EDITOR_VIM) {
+        SEND_STRING("gd");
+    } else if (current_editor_mode == EDITOR_VSCODE) {
+        SEND_STRING(SS_TAP(X_F12));  // F12
+    }
+    break;
+```
+
+### Rekommenderad lösning
+En kombination av Alternativ 1 och 4 rekommenderas:
+- **State variable** för att hålla reda på aktuell editor
+- **Makron** för att skicka editor-specifika kommandon
+- **Leader-sekvenser** för att växla mellan editor-modes
+
 ---
 
 *Dokument skapat: 2025-12-27*  
