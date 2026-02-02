@@ -1,12 +1,12 @@
 USER=jimhansson
 
 KEYBOARDS += crkbd
-KEYBOARDS += planck
-KEYBOARDS += ergodox_ez
+#KEYBOARDS += planck
+#KEYBOARDS += ergodox_ez
 
 crkbd: ARGS = CONVERT_TO=helios
 crkbd_variants = rev1
-planck_variants = rev6
+planck_variants = rev3
 ergodox_ez_variants = shine glow
 
 all: $(KEYBOARDS)
@@ -32,7 +32,7 @@ setup: pre-setup $(SYMLINKS)
 
 $(KEYBOARDS): setup
 	@echo ===== $@ =====
-	cd qmk_firmware && $(ARGS) qmk compile -kb $(subst -,/,$@) -km $(USER) 
+	cd qmk_firmware && $(ARGS) qmk compile -kb $(subst -,/,$@) -km $(USER) $(ARGS)
 
 # Generic rule for keyboards with variants
 define keyboard_with_variants
@@ -40,7 +40,7 @@ $(1): $(foreach v,$($(1)_variants),$(1)/$(v))
 	@echo ===== $$@ =====
 $(1)/%:
 	@echo ===== $$@ =====
-	cd qmk_firmware && $(ARGS) qmk compile -kb $$@ -km $(USER) 
+	cd qmk_firmware && $(ARGS) qmk compile -kb $$@ -km $(USER) $(ARGS)
 endef
 
 # Apply the rule to each keyboard that has variants
