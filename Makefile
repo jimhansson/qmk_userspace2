@@ -32,7 +32,7 @@ setup: pre-setup $(SYMLINKS)
 
 $(KEYBOARDS): setup
 	@echo ===== $@ =====
-	cd qmk_firmware && qmk compile -kb $(subst -,/,$@) -km $(USER) $($(subst -,_,$@)_ARGS)
+	cd qmk_firmware && $($(subst -,_,$@)_ARGS) qmk compile -kb $(subst -,/,$@) -km $(USER) 
 
 # Generic rule for keyboards with variants
 define keyboard_with_variants
@@ -40,7 +40,7 @@ $(1): $(foreach v,$($(1)_variants),$(1)/$(v))
 	@echo ===== $$@ =====
 $(1)/%:
 	@echo ===== $$@ =====
-	cd qmk_firmware && qmk compile -kb $$@ -km $(USER) $($(1)_ARGS)
+	cd qmk_firmware && $($(1)_ARGS) qmk compile -kb $$@ -km $(USER) 
 endef
 
 # Apply the rule to each keyboard that has variants
