@@ -2,7 +2,7 @@ USER=jimhansson
 
 KEYBOARDS += crkbd
 #KEYBOARDS += planck
-#KEYBOARDS += ergodox_ez
+KEYBOARDS += ergodox_ez
 
 crkbd_ARGS = CONVERT_TO=helios
 crkbd_variants = rev1

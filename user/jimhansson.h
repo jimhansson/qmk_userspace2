@@ -171,7 +171,7 @@ enum tap_dances {
 #define ___4NAV_MY_1___       KC_PGUP, KC_HOME,  KC_UP,   KC_END
                          /* ├────────┼────────┼────────┼────────┤ */
                          /* │  PgDn  │  Left  │  Down  │  Right │ */
-#define ___4NAV_MY_2___      KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT
+#define ___4NAV_MY_2___       KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT
                          /* ╰────────┴────────┴────────┴────────╯ */
 
                          /* ╭─────────┬─────────┬─────────╮ */

@@ -21,7 +21,7 @@
 #define AUTO_SHIFT_REPEAT
 
 // leader keyconf
-#define LEADER_TIMEOUT 250
+#define LEADER_TIMEOUT 500
 #define LEADER_NO_TIMEOUT
 #define LEADER_PER_KEY_TIMING
 

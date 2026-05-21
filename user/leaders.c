@@ -22,74 +22,56 @@
 
 #if LEADER_ENABLE
 void leader_end_user(void) {
-  //bool did_leader_succeed = false;
-
   // x-case things
   if(       leader_sequence_one_key(LEAD_U)) {
     enable_xcase_with(SE_UNDS);
-    //did_leader_succeed = true;
   } else if(leader_sequence_one_key(LEAD_Z)) { //same place on my symtable
     enable_xcase_with(SE_SLSH);
-    //did_leader_succeed = true;s
   } else if(leader_sequence_one_key(SE_COMM)) {
     enable_xcase_with(SE_COMM);
-    //did_leader_succeed = true;
   } else if(leader_sequence_one_key(SE_DOT)) {
     enable_xcase_with(SE_DOT);
-    //did_leader_succeed = true;
   } else if(leader_sequence_one_key(LEAD_V)) {  // same place on my symtable
     enable_xcase_with(SE_BSLS);
-    //did_leader_succeed = true;
   } else if(leader_sequence_one_key(LEAD_D)) {
     // easier to write defines.
     enable_xcase_with(SE_UNDS);
     enable_caps_word();
-    //did_leader_succeed = true;
   } else if(leader_sequence_one_key(LEAD_X)) {
     // x-case
     enable_xcase();
-    //did_leader_succeed = true;
     // end of x-case things
   } else if(leader_sequence_two_keys(LEAD_AS)){ // AS
 #if AUTO_SHIFT_ENABLE
     // autoshift toggle
     autoshift_toggle();
-    //did_leader_succeed = true;
 #endif
   } else if(leader_sequence_four_keys(LEAD_BOOT)) { // CONF
     reset_keyboard();
-    //did_leader_succeed = true;
   } else if(leader_sequence_three_keys(LEAD_CAP)) { // CAP
     // cap = Caps lock
     register_code(KC_CAPS_LOCK);
     unregister_code(KC_CAPS_LOCK);
-    //did_leader_succeed = true;
   } else if(leader_sequence_four_keys(LEAD_CONF)) { // CONF
     // switch to layer for configuration
     layer_on(_CFG);
-    //did_leader_succeed = true;
   } else if(leader_sequence_three_keys(LEAD_ESC)) { // ESC
     // ESC = escape key
     register_code(KC_ESC);
     unregister_code(KC_ESC);
-    //did_leader_succeed = true;
   } else if(leader_sequence_one_key(LEAD_F)) {
     set_oneshot_layer(_FUN, ONESHOT_START);
     clear_oneshot_layer_state(ONESHOT_PRESSED);
-    //did_leader_succeed = true;
   } else if(leader_sequence_three_keys(LEAD_NUM)) { // NUM
     // num = num lock
     register_code(KC_NUM_LOCK);
     unregister_code(KC_NUM_LOCK);
-    //did_leader_succeed = true;
   } else if(leader_sequence_five_keys(LEAD_RESET)) {
     reset_keyboard();
-    //did_leader_succeed = true;
   } else if(leader_sequence_four_keys(LEAD_SCRL)) {
     // scrl = scroll lock
     register_code(KC_SCROLL_LOCK);
     unregister_code(KC_SCROLL_LOCK);
-    //did_leader_succeed = true;
   } 
   
 }

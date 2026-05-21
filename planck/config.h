@@ -3,7 +3,6 @@
 // Planck-specifika inställningar
 #define TAPPING_TERM 200
 #define PERMISSIVE_HOLD
-#define IGNORE_MOD_TAP_INTERRUPT
 
 // Autoshift (om aktiverat)
 #ifdef AUTO_SHIFT_ENABLE
@@ -17,6 +16,3 @@
 #define COMBO_MUST_HOLD_MODS
 #endif
 
-// Leader key
-#define LEADER_TIMEOUT 300
-#define LEADER_PER_KEY_TIMING
